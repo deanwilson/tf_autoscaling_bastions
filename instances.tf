@@ -33,8 +33,8 @@ resource "aws_autoscaling_group" "bastion_asg" {
     launch_configuration = "${aws_launch_configuration.bastion_lc.name}"
     load_balancers = ["${aws_elb.bastion_hosts_elb.name}"]
 
-    max_size = "${var.max_bastion_instances}"
-    min_size = "${var.min_bastion_instances}"
+    max_size = "1"
+    min_size = "1"
 
     tag {
         key = "terraform"

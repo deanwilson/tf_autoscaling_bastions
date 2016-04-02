@@ -29,14 +29,6 @@ variable "instance_type" {
     default = "t1.micro"
 }
 
-variable "max_bastion_instances" {
-    default = 1
-}
-
-variable "min_bastion_instances" {
-    default = 1
-}
-
 # something used to namespace the bastions
 # so multiple deployments can exist at once
 variable "stackname" { }
