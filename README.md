@@ -41,10 +41,16 @@ Use the module in your terraform files:
     module "bastion_hosts" {
         source = "github.com/deanwilson/tf_autoscaling_bastions"
 
+        asg_subnet_ids = "subnet-11111111,subnet-22222222"
+        elb_subnet_ids = "subnet-33333333,subnet-44444444"
+
+        host_keys_bucket = "org.example.terraform.bastion-hostkeys"
+
         region   = "eu-west-1"
         ssh_key_name = "dwilson-test"
-        host_keys_bucket = "org.example.terraform.bastion-hostkeys"
         stackname = "mctesty"
+
+        vpc_id = "vpc-8ba044ef
     }
 
 and then run a `terraform get` to download the module.
@@ -55,9 +61,13 @@ Once you've applied it you can check the value with
 
 ### Module Input Variables
 
+ * `asg_subnet_ids`
+   * A comma separated list of subnet ids to be used by the autoscaling group
  * `elb_ingress_port`
    * the external port to ssh to on the ELB.
    * defaults to 2222
+ * `elb_subnet_ids`
+   * A comma separated list of subnet ids to be used by the ELB
  * `host_keys_bucket` - the s3 bucket instances download their ssh host keys from
  * `instance_type`
    * defaults to a `t1.micro`
@@ -72,6 +82,8 @@ Once you've applied it you can check the value with
  * `ssh_key_name`
    * The ssh key used to connect to bastion instances.
    * Must already exist in the AWS region.
+ * `vpc_id`
+   * The VPC ID to be used by the security groups.
 
 ### Module Outputs
 

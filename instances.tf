@@ -27,7 +27,7 @@ resource "aws_launch_configuration" "bastion_lc" {
 }
 
 resource "aws_autoscaling_group" "bastion_asg" {
-    availability_zones = ["${split(",", lookup(var.availability_zones, var.region))}"]
+    vpc_zone_identifier = ["${split(",", var.asg_subnet_ids)}"]
 
     name = "bastion_asg_${var.stackname}"
     launch_configuration = "${aws_launch_configuration.bastion_lc.name}"

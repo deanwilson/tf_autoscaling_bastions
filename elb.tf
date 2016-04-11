@@ -1,5 +1,5 @@
 resource "aws_elb" "bastion_hosts_elb" {
-    availability_zones = ["${split(",", lookup(var.availability_zones, var.region))}"]
+    subnets = ["${split(",", var.elb_subnet_ids)}"]
 
     cross_zone_load_balancing = true
     security_groups = ["${aws_security_group.bastion_elb.id}"]
