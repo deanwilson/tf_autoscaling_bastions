@@ -44,7 +44,7 @@ resource "aws_autoscaling_group" "bastion_asg" {
 
     tag {
         key = "Name"
-        value = "bastion-host"
+        value = "bastion-host-${var.stackname}"
         propagate_at_launch = true
     }
 
