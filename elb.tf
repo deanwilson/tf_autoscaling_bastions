@@ -21,7 +21,7 @@ resource "aws_elb" "bastion_hosts_elb" {
     }
 
     tags {
-        Name = "bastion_hosts_elb"
+        Name = "bastion_hosts_elb_${var.stackname}"
         terraform = "true"
         stackname = "${var.stackname}"
     }
