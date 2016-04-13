@@ -11,7 +11,7 @@ resource "template_file" "user_data" {
 
 resource "aws_launch_configuration" "bastion_lc" {
     name_prefix = "bastion-lc-${var.stackname}-"
-    image_id = "${lookup(var.ami_id, var.region)}"
+    image_id = "${var.ami_id}"
 
     instance_type = "${var.instance_type}"
 
