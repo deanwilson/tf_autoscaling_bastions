@@ -1,14 +1,10 @@
 
 variable "ami_id" {
-    default = {
-        eu-west-1 = "ami-bfa319cc"
-    }
+    description = "AMI ID the bastions should be based on"
 }
 
-variable "availability_zones" {
-    default = {
-        eu-west-1 = "eu-west-1a,eu-west-1b,eu-west-1c"
-    }
+variable "asg_subnet_ids" {
+    description = "A comma separated list of subnet IDs for the autoscaling group"
 }
 
 variable "bastion_elb_security_group_name" {
@@ -16,17 +12,21 @@ variable "bastion_elb_security_group_name" {
 }
 
 variable "bastion_security_group_name" {
-    default = "bastion-instances-"
+    default = "bastion-instances"
 }
 
 variable "elb_ingress_port" {
     default = 2222
 }
 
+variable "elb_subnet_ids" {
+    description = "A comma separated list of subnet IDs for the ELB"
+}
+
 variable "host_keys_bucket" { }
 
 variable "instance_type" {
-    default = "t1.micro"
+    default = "t2.micro"
 }
 
 variable "max_bastion_instances" {
@@ -51,3 +51,6 @@ variable "ssh_key_name" {
     default = "bastion-ssh-keys"
 }
 
+variable "vpc_id" {
+    description = "The VPC ID the resources will be created in"
+}

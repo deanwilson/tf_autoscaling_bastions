@@ -11,7 +11,7 @@ resource "template_file" "user_data" {
 
 resource "aws_launch_configuration" "bastion_lc" {
     name_prefix = "bastion-lc-${var.stackname}-"
-    image_id = "${lookup(var.ami_id, var.region)}"
+    image_id = "${var.ami_id}"
 
     instance_type = "${var.instance_type}"
 
@@ -27,7 +27,7 @@ resource "aws_launch_configuration" "bastion_lc" {
 }
 
 resource "aws_autoscaling_group" "bastion_asg" {
-    availability_zones = ["${split(",", lookup(var.availability_zones, var.region))}"]
+    vpc_zone_identifier = ["${split(",", var.asg_subnet_ids)}"]
 
     name = "bastion_asg_${var.stackname}"
     launch_configuration = "${aws_launch_configuration.bastion_lc.name}"
@@ -44,7 +44,7 @@ resource "aws_autoscaling_group" "bastion_asg" {
 
     tag {
         key = "Name"
-        value = "bastion-host"
+        value = "bastion-host-${var.stackname}"
         propagate_at_launch = true
     }
 

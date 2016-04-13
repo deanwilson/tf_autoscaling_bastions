@@ -1,6 +1,7 @@
 resource "aws_security_group" "bastion_elb" {
     name = "${var.bastion_elb_security_group_name}_${var.stackname}"
     description = "Bastion ELB SG: ${var.bastion_elb_security_group_name}_${var.stackname}"
+    vpc_id = "${var.vpc_id}"
 }
 
 
@@ -29,6 +30,7 @@ resource "aws_security_group_rule" "elb_ssh_egress" {
 resource "aws_security_group" "bastion" {
     name = "${var.bastion_security_group_name}_${var.stackname}"
     description = "Bastion SG: ${var.bastion_security_group_name}_${var.stackname}"
+    vpc_id = "${var.vpc_id}"
 }
 
 resource "aws_security_group_rule" "bastion_ssh_ingress" {
