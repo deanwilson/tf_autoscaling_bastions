@@ -1,8 +1,6 @@
 
 variable "ami_id" {
-    default = {
-        eu-west-1 = "ami-bfa319cc"
-    }
+    description = "AMI ID the bastions should be based on"
 }
 
 variable "asg_subnet_ids" {
@@ -14,7 +12,7 @@ variable "bastion_elb_security_group_name" {
 }
 
 variable "bastion_security_group_name" {
-    default = "bastion-instances-"
+    default = "bastion-instances"
 }
 
 variable "elb_ingress_port" {
@@ -28,7 +26,7 @@ variable "elb_subnet_ids" {
 variable "host_keys_bucket" { }
 
 variable "instance_type" {
-    default = "t1.micro"
+    default = "t2.micro"
 }
 
 variable "max_bastion_instances" {
