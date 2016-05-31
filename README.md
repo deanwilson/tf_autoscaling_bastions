@@ -41,6 +41,8 @@ Use the module in your terraform files:
     module "bastion_hosts" {
         source = "github.com/deanwilson/tf_autoscaling_bastions"
 
+        ami_id = "ami-fce3c696"
+
         asg_subnet_ids = "subnet-11111111,subnet-22222222"
         elb_subnet_ids = "subnet-33333333,subnet-44444444"
 
@@ -61,6 +63,8 @@ Once you've applied it you can check the value with
 
 ### Module Input Variables
 
+ * `ami_id`
+   * The AMI id the instances should use
  * `asg_subnet_ids`
    * A comma separated list of subnet ids to be used by the autoscaling group
  * `elb_ingress_port`
